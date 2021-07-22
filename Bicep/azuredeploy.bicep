@@ -16,6 +16,7 @@ module myMod 'storage.bicep' = {
   name: 'storageDeploy'
   params: {
     namePrefix: namePrefix
+    location: location
   }
   scope: resourceGroup(rgname)
 } 
