@@ -16,7 +16,7 @@ on:
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   # This workflow contains a single job called "build"
-  build:
+  buildAndTestBicep:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
 
@@ -40,14 +40,6 @@ jobs:
         id: armtest
         with:
           path: ./Bicep
-      
-      # Checks the result
-      - name: Check the result
-        shell: bash
-        run: |
-          shopt -s globstar
-          ls -altR **/Bicep/*.json
-      
       
       - name: Show ARM TTK test result
         shell: bash
