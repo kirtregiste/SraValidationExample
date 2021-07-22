@@ -28,7 +28,7 @@ jobs:
       - name: Bicep Build
         # You may pin to the exact commit or the version.
         # uses: aliencube/bicep-build-actions@9f46db3c20a0bcb92b48bd300207284d164ca3db
-        uses: aliencube/bicep-build-actions@v0.1
+        uses: aliencube/bicep-build-actions@v0.3
         with:
           # List of .bicep files to build, delimited by a space. eg) file1 file2 file3 ...
           files: '**/*.bicep'
