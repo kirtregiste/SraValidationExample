@@ -40,7 +40,15 @@ jobs:
         id: armtest
         with:
           path: ./Bicep
-    
+      
+      # Checks the result
+      - name: Check the result
+        shell: bash
+        run: |
+          shopt -s globstar
+          ls -altR **/Bicep/*.json
+      
+      
       - name: Show ARM TTK test result
         shell: bash
         continue-on-error: true
