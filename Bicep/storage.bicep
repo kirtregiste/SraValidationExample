@@ -1,9 +1,8 @@
 param namePrefix string
-param location string
 
 resource storage 'Microsoft.Storage/storageAccounts@2021-04-01' = {
   name: '${namePrefix}rg'
-  location: location
+  location: resourceGroup().location
   sku: {
     name: 'Standard_LRS'
   }
