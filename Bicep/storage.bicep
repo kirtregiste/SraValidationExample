@@ -1,8 +1,8 @@
-param namePrefix string
+param storageName string
 param location string
 
 resource storage 'Microsoft.Storage/storageAccounts@2021-04-01' = {
-  name: '${namePrefix}rg'
+  name: '${storageName}'
   location: location
   sku: {
     name: 'Standard_LRS'
