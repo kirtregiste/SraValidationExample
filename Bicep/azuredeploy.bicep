@@ -1,22 +1,18 @@
-param namePrefix string
-param location string
-param rgname string
-
 
 module rgMod 'resourcegroup.bicep' = {
   scope: subscription()
   name: 'rgDeploy'
   params: {
-    location: location
-    rgname: rgname
+    location: 'eastus'
+    rgname: 'rg-testrg-001'
   }
 }
 
 module myMod 'storage.bicep' = {
   name: 'storageDeploy'
   params: {
-    namePrefix: namePrefix
-    location: location
+    storageName: 'st-teststorage'
+    location: 'eastus'
   }
   scope: resourceGroup(rgname)
 } 
