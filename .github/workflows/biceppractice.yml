@@ -46,3 +46,64 @@ jobs:
         continue-on-error: true
         run: |
           echo 'Results: ${{ toJSON(fromJSON(steps.armtest.outputs.results)) }}'
+  
+  validateNamesAndDeploy:
+    runs-on: ubuntu-latest
+    steps:
+
+      # Checkout code
+    - uses: actions/checkout@main  
+    
+      # Log into Azure
+    - uses: azure/login@v1
+      with:
+        creds: ${{ secrets.AZURE_CREDENTIALS }}
+        enable-AzPSSession: true
+        
+    - name: Checkout naming-convention-tool repo
+      uses: actions/checkout@v2
+      with:
+        repository: kirtregiste/BicepNamingValidationTool
+        token: ${{ secrets.NAMINGVALIDATION_PAT }}
+        path: naming-validation-tool
+        
+    - name: Display root Directory
+      uses: Azure/powershell@v1
+      with:
+        inlineScript: |
+          dir
+        azPSVersion: "latest"    
+        
+    - name: Display naming tool Directory
+      uses: Azure/powershell@v1
+      with:
+        inlineScript: |
+          dir ./naming-validation-tool
+        azPSVersion: "latest" 
+    
+        
+      #Validate Naming Convention
+    - name: Validate Naming Convention
+      uses: Azure/powershell@v1
+      with:
+        # Specify the Az PowerShell script here.
+        inlineScript: |
+          ./naming-validation-tool/namingvalidation.ps1 `
+          -templateFile ./bicep/rg-biceptest.bicep `
+          -templateParameterFile parameters.json `
+          -scope 'subscription' `
+          -location eastus
+        # Azure PS version to be used to execute the script, example: 1.8.0, 2.8.0, 3.4.0. To use the latest version, specify "latest".
+        azPSVersion: "latest"  
+        
+      # Deploy Bicep file
+    - name: deploy
+      uses: azure/arm-deploy@v1
+      with:
+        subscriptionId: ${{ secrets.AZURE_SUBSCRIPTION }}
+        resourceGroupName: ${{ secrets.AZURE_RG }}
+        template: ./bicep/rg-biceptest.bicep
+        parameters: ./parameters.json
+        failOnStdErr: false
+    
+    
