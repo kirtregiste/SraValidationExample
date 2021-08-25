@@ -14,5 +14,5 @@ module myMod 'storage.bicep' = {
     storageName: 'st-teststorage'
     location: 'eastus'
   }
-  scope: resourceGroup(rgname)
+  scope: resourceGroup(rgMod.name)
 } 
