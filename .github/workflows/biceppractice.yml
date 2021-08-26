@@ -101,6 +101,14 @@ jobs:
     - buildAndTestBicep    
     runs-on: ubuntu-latest
     steps:
+    
+    - name: Display root Directory
+      uses: Azure/powershell@v1
+      with:
+        inlineScript: |
+          dir
+        azPSVersion: "latest"
+    
       # Deploy Bicep file
     - name: deploy
       uses: azure/arm-deploy@v1
