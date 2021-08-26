@@ -47,7 +47,7 @@ jobs:
         run: |
           echo 'Results: ${{ toJSON(fromJSON(steps.armtest.outputs.results)) }}'
   
-  validateNamesAndDeploy:
+  validateNamingConvention:
     runs-on: ubuntu-latest
     steps:
 
@@ -95,6 +95,9 @@ jobs:
         # Azure PS version to be used to execute the script, example: 1.8.0, 2.8.0, 3.4.0. To use the latest version, specify "latest".
         azPSVersion: "latest"  
         
+  DeployToAzure:
+    runs-on: ubuntu-latest
+    steps:
       # Deploy Bicep file
     - name: deploy
       uses: azure/arm-deploy@v1
