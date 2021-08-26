@@ -102,6 +102,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     
+      # Checkout code
+    - uses: actions/checkout@main  
+    
     - name: Display root Directory
       uses: Azure/powershell@v1
       with:
