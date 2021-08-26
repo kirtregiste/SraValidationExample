@@ -105,7 +105,6 @@ jobs:
     - name: deploy
       uses: azure/arm-deploy@v1
       with:
-        subscriptionId: ${{ secrets.AZURE_SUBSCRIPTION }}
         scope: subscription
         region: eastus
         #resourceGroupName: ${{ secrets.AZURE_RG }}
