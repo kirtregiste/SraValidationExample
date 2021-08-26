@@ -125,7 +125,7 @@ jobs:
         scope: subscription
         region: eastus
         #resourceGroupName: ${{ secrets.AZURE_RG }}
-        template: ./**/azuredeploy.bicep
+        template: ./Bicep/azuredeploy.bicep
         failOnStdErr: false
     
     
