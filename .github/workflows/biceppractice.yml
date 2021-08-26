@@ -89,9 +89,9 @@ jobs:
         # Specify the Az PowerShell script here.
         inlineScript: |
           ./naming-validation-tool/namingvalidation.ps1 `
-          -templateFile ./Bicep/azuredeploy.bicep `
+          -template ./Bicep/azuredeploy.bicep `
           -scope 'subscription' `
-          -location eastus
+          -region eastus
         # Azure PS version to be used to execute the script, example: 1.8.0, 2.8.0, 3.4.0. To use the latest version, specify "latest".
         azPSVersion: "latest"  
         
