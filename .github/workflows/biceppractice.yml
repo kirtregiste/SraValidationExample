@@ -96,6 +96,7 @@ jobs:
         azPSVersion: "latest"  
         
   DeployToAzure:
+    needs: validateNamingConvention
     runs-on: ubuntu-latest
     steps:
       # Deploy Bicep file
